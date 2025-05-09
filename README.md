@@ -2,7 +2,7 @@
 
 1. Clonar repositorio
 ```
-git clone https://github.com/edwleo/rest-api-software.git
+git clone https://github.com/mexvipre/REST_API_MEDICAMENTOS
 ```
 
 2. Reconstruir node_modules
@@ -22,17 +22,20 @@ DB_DATABASE=
 4. Restaure la BD (db > database.sql)
 
 ```sql
-CREATE DATABASE appstore;
-USE appstore;
+create database clinica
 
-CREATE TABLE softwares
-(
-  id          INT AUTO_INCREMENT PRIMARY KEY,
-  nombre      VARCHAR(40) NOT NULL,
-  espaciomb   SMALLINT NOT NULL,
-  versionsoft VARCHAR(20) NOT NULL,
-  precio      DECIMAL(7,2) NOT NULL
-)ENGINE = INNODB;
+use  clinica;
+
+CREATE TABLE medicamentos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  tipo ENUM('Analgésico', 'Antiinflamatorio', 'Antibiótico', 'Antihistamínico') NOT NULL,
+  nombre VARCHAR(120) NOT NULL,
+  nomcomercial VARCHAR(40) UNIQUE NOT NULL,  -- Nomcomercial no puede repetirse
+  presentacion ENUM('Tabletas', 'Cápsulas', 'Suspensión', 'Jarabe', 'Polvo') NOT NULL,
+  receta ENUM('S', 'N') NOT NULL,
+  precio DECIMAL(7,2) NOT NULL CHECK (precio > 0),  -- Precio no puede ser negativo o cero
+  UNIQUE(nombre)  -- Evitar duplicación de nombres
+);
 ```
 
 5. Ejecute el proyecto:
