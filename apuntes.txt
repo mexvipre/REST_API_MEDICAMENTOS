@@ -1,0 +1,17 @@
+ npm init -y
+ npm install express
+ npm i nodemon -D
+
+
+// Cuando ya tenemos un script que permite ejecutar el server 
+
+ npm run dev
+
+
+ npm i mysql2
+
+//
+  npm i dotenv
+
+
+  
